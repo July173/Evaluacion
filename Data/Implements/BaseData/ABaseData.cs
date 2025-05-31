@@ -1,5 +1,4 @@
 ﻿using Data.Interfaces;
-using Entity.Context;
 using Entity.Model.Base;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;

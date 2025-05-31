@@ -119,6 +119,19 @@ namespace Web.Controllers.Implements
                 return StatusCode(500, "Error interno del servidor");
             }
         }
+        /// <summary>
+        /// Elimina lógicamente un registro por su ID.
+        /// </summary>
+        /// <param name="id">ID del registro a eliminar</param>
+        [HttpPatch("{id}/active")]
+        public async Task<IActionResult> SoftActive(int id)
+        {
+            var result = await _business.SoftDeleteAsync(id);
+            if (!result)
+                return NotFound();
+
+            return NoContent();
+        }
 
         // Método abstracto para obtener el ID de la entidad creada para el CreatedAtAction
         protected abstract int GetEntityId(TDto dto);

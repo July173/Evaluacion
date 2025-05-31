@@ -16,7 +16,8 @@ namespace Business.Interfaces
         /// </summary>
         /// <param name="dto">Objeto que contiene los datos actualizados del autor, como nombre o estado.</param>
         ///<returns>True si la actualización fue exitosa; de lo contario false</returns>
-        Task<bool> UpdatePartialAuthotAsync(AuthorUpdateDto dto);
+        Task<bool> UpdatePartialAuthorAsync(AuthorUpdateDto dto);
+
 
     }
 }

@@ -21,15 +21,7 @@ namespace Web.ServiceExtension
                     Description = "API para el sistema de gestión"
                 });
 
-                // Configuración para autenticación JWT
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
-                    Name = "Authorization",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer"
-                });
+             
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {

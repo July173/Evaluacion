@@ -10,35 +10,35 @@ using Entity.Dtos.AuthorDto;
 using Entity.Dtos.BookDto;
 using Entity.Dtos.CityDto;
 using Entity.Model;
+using FluentValidation;
 using Microsoft.Build.Framework;
 using Microsoft.Extensions.Logging;
 
 namespace Business.Implements
 {
-    public  class BookBusiness : BaseBusiness<Book,BookDto>, IBookBusiness
+    public class BookBusiness : BaseBusiness<Book, BookDto>, IBookBusiness
     {
         private readonly IBookData _bookData;
-        public BookBusiness(IBookData bookData, IMapper mapper, ILogger<BookBusiness> logger ) :base( bookData, mapper, logger)
+        private readonly IValidator<BookDto> _validator; // Add validator field  
+
+        public BookBusiness(IBookData bookData, IMapper mapper, ILogger<BookBusiness> logger)
+            : base(bookData, mapper, logger) // Pass validator to base constructor  
         {
             _bookData = bookData;
         }
-     
-      
 
-        ///<summary>
-        /// Actualiza parcialmente un libro en la base de datos
-        /// </summary>
+        ///<summary>  
+        /// Actualiza parcialmente un libro en la base de datos  
+        /// </summary>  
         public async Task<bool> UpdatePartialBookAsync(BookUpdateDto dto)
         {
             if (dto.Id <= 0)
                 throw new ArgumentException("ID inválido.");
 
-
             var book = _mapper.Map<Book>(dto);
 
-            var result = await _bookData.UpdatePartial(book); // esto ya retorna bool
+            var result = await _bookData.UpdatePartial(book); // esto ya retorna bool  
             return result;
         }
-
     }
 }
